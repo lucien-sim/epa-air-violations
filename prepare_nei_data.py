@@ -146,7 +146,6 @@ def calc_primary_emissions(nei_data):
                 new_col.append(add_primary_poll_cols(
                     row, poll_num, year, primary_poll, mean_emiss))
             nei_data['poll'+str(poll_num)+'_'+year] = new_col
-            print(poll_num)
 
     return nei_data, primary_poll
 
@@ -154,6 +153,8 @@ def calc_primary_emissions(nei_data):
 if __name__ == '__main__':
 
     from external_variables import data_path
+
+    log = open('logfile.txt','a')
 
     # Years of NEI data, pollutant codes. 
     yrs = ['2008', '2011', '2014']
@@ -176,4 +177,7 @@ if __name__ == '__main__':
         data_path, 'primary_pollutants_by_industry.csv'))
     nei_data.to_csv(os.path.join(
         data_path, 'processed_nei_emissions_by_facility.csv'))
+
+    log.write('NEI data processing complete.\n')
+    log.close()
 

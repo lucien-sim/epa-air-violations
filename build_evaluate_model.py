@@ -715,12 +715,14 @@ if __name__ == '__main__':
 
     from external_variables import data_path, gov_dict, app_path
 
+    log = open('logfile.txt','a')
+
     app_data_path = os.path.join(app_path, 'data')
     test_yrs = ['2007', '2012', '2018']
 
     #==========================================================================
     # STEP 1: Load inspection data, facility information
-    print('STEP1')
+    log.write('Train/evaluate, STEP 1 \n')
     inspections = load_processed_inspections(future_thresh=90)
     facilities_echo = load_facility_info_ECHO()
     file_facilities_icis = os.path.join(
@@ -730,7 +732,7 @@ if __name__ == '__main__':
 
     #==========================================================================
     # STEP 2: Add historical features
-    print('STEP2')
+    log.write('Train/evaluate, STEP 2 \n')
     pipe_before_split = Pipeline([
         ('add_reg_id', add_registry_id(facility_file=file_facilities_icis)),
         ('time_since_prev_insp_src', time_since_prev(date_col='ACTUAL_END_DATE',
@@ -752,7 +754,7 @@ if __name__ == '__main__':
 
     #==========================================================================
     # STEP 3: Divide into separate datasets for major and minor facilities
-    print('STEP2')
+    log.write('Train/evaluate, STEP 3 \n')
     pipe_maj_min = Pipeline([
         ('add_major_minor', add_facility_info(
             facilities_echo, ['FAC_MAJOR_FLAG'], merge_on='REGISTRY_ID')),
@@ -770,7 +772,7 @@ if __name__ == '__main__':
 
     #==========================================================================
     # STEP 4: Build model for major facilities
-    print('STEP4')
+    log.write('Train/evaluate, STEP 4 \n')
     # Split inspection data into X and y. 
     y = insp_maj['VIOL']
     X = insp_maj.drop('VIOL', axis=1)
@@ -856,7 +858,7 @@ if __name__ == '__main__':
 
     #==========================================================================
     # STEP 5: build model for minor facilities. 
-    print('STEP5')
+    log.write('Train/evaluate, STEP 5 \n')
     # Separate into X and y
     y = insp_min['VIOL']
     X = insp_min.drop('VIOL', axis=1)
@@ -907,7 +909,7 @@ if __name__ == '__main__':
 
     #==========================================================================
     # STEP 6: Estimate p(viol) as a function of the model risk score
-    print('STEP6')
+    log.write('Train/evaluate, STEP 6 \n')
     from joblib import load
     clf_major = load(os.path.join('.','models','model_major_facilities.joblib'))
     clf_minor = load(os.path.join('.','models','model_minor_facilities.joblib'))
@@ -934,7 +936,7 @@ if __name__ == '__main__':
 
     #==========================================================================
     # STEP 7: Get probabilities for all facilities at the current time
-    print('STEP7')
+    log.write('Train/evaluate, STEP 7 \n')
     # Create predictors for all facilities at the current time.
     viol_data = insp1[['PGM_SYS_ID', 'REGISTRY_ID', 'ACTUAL_END_DATE', 'VIOL']]
     all_sources = facilities_icis[['PGM_SYS_ID', 'REGISTRY_ID']]
@@ -971,7 +973,7 @@ if __name__ == '__main__':
     # STEP 8: Test the model's performance
     # Run the model for 2007, 2012, and 2018. Evaluate recommendations against
     # real inspection records from those years. Record results to a CSV file. 
-    print('STEP8')
+    log.write('Train/evaluate, STEP 8 \n')
     prop_actual,prop_model,p_val = [],[],[]
 
     for test_yr in test_yrs: 
@@ -1027,6 +1029,9 @@ if __name__ == '__main__':
     # Store all this to a dataframe, save to file. 
     results_df = pd.DataFrame({'year':test_yrs,'actual':prop_actual,'model':prop_model,'p_val':p_val})
     results_df.to_csv(os.path.join(app_data_path,'model_test_results.csv'))
+
+    log.write('Model trained.')
+    log.close()
 
 
 

@@ -5,6 +5,7 @@ import numpy as np
 import os
 import datetime
 import matplotlib.pyplot as plt
+import datetime
 
 def load_raw_inspections(file_path,start_date=pd.Timestamp(year=2013,month=1,day=1),
                      end_date=pd.Timestamp(year=2018,month=12,day=31)):
@@ -131,10 +132,12 @@ def link_viol_insp(inspections,violations,past_thresh=0,future_thresh=90):
 
 if __name__=='__main__': 
 
+    log = open('logfile.txt','a')
+
     # Set some constants. 
     from external_variables import data_path
     start_date = pd.Timestamp(year=2003,month=1,day=1)
-    end_date = pd.Timestamp(year=2018,month=12,day=31)
+    end_date = pd.Timestamp(datetime.datetime.today())
     insp_viol_thresh_days = 365
     insp_event_thresh = 14
 
@@ -164,7 +167,10 @@ if __name__=='__main__':
 
     # Test linking percentage
     from tests import TEST_linking_percentage
-    TEST_linking_percentage(violations,new_insp)
+    TEST_linking_percentage(violations,new_insp,log)
+
+    log.write('Inspections linked to violations.\n')
+    log.close()
 
 
 

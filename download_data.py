@@ -55,6 +55,8 @@ if __name__=='__main__':
     from tests import TEST_ICISAir_columns, TEST_ECHO_columns
     from tests import TEST_FRS_columns, TEST_NEI_columns
 
+    log = open('logfile.txt','a')
+
     # Download ICIS-Air data
     icis_path = os.path.join(data_path, 'ICIS-Air')
     make_directory(icis_path)
@@ -64,8 +66,8 @@ if __name__=='__main__':
     unzip_file(os.path.join(file_path, file_name), file_path, 'ICIS-Air')
     os.remove(os.path.join(file_path, file_name))
 
-    TEST_ICISAir_filenames(icis_path)
-    TEST_ICISAir_columns()
+    TEST_ICISAir_filenames(icis_path,log)
+    TEST_ICISAir_columns(log)
 
     # Download ECHO facility data
     echo_path = os.path.join(data_path, 'ECHO')
@@ -80,8 +82,8 @@ if __name__=='__main__':
     file_path, file_name = download_file_http(
         url, echo_path, 'echo_exporter_columns_02282019.xlsx')
 
-    TEST_ECHO_filenames(echo_path)
-    TEST_ECHO_columns()
+    TEST_ECHO_filenames(echo_path,log)
+    TEST_ECHO_columns(log)
 
     # Download FRS data
     frs_path = os.path.join(data_path, 'FRS')
@@ -92,8 +94,8 @@ if __name__=='__main__':
     unzip_file(os.path.join(file_path, file_name), file_path, 'FRS')
     os.remove(os.path.join(file_path, file_name))
 
-    TEST_FRS_filenames(frs_path)
-    TEST_FRS_columns()
+    TEST_FRS_filenames(frs_path,log)
+    TEST_FRS_columns(log)
 
     # Download NEI data
     nei_path = os.path.join(data_path, 'NEI')
@@ -106,7 +108,7 @@ if __name__=='__main__':
     os.remove(os.path.join(file_path, file_name))
     os.rename(os.path.join(file_path, '2008neiv3_facility', '2008neiv3_facility.csv'),
             os.path.join(file_path, '2008neiv3_facility.csv'))
-    os.remove(os.path.join(file_path, '2008neiv3_facility'))
+    shutil.rmtree(os.path.join(file_path, '2008neiv3_facility'))
 
     # For 2011
     url = 'ftp://newftp.epa.gov/air/nei/2011/data_summaries/2011v2/2011neiv2_facility.zip'
@@ -120,5 +122,8 @@ if __name__=='__main__':
     unzip_file(os.path.join(file_path, file_name), file_path, 'NEI')
     os.remove(os.path.join(file_path, file_name))
 
-    TEST_NEI_filenames(nei_path)
-    TEST_NEI_columns()
+    TEST_NEI_filenames(nei_path,log)
+    TEST_NEI_columns(log)
+
+    log.write('Data download complete.\n')
+    log.close()
