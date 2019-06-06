@@ -48,7 +48,7 @@ conda install -c conda-forge pandas numpy scipy scikit-learn imbalanced-learn jo
 ```
 5. Change into the repository's main directory on your local machine. 
 6. Type `execute_retraining.sh` to train the model. 
-7. If you wish to deploy the model, set up your own [Heroku](https://www.heroku.com) application to do so. If you do not wish to deploy the model, just comment the last few lines of `execute_retraining.sh`. 
+7. If you wish to deploy the model, please set up your own [Heroku](https://www.heroku.com) application to do so. If you do not wish to deploy the model, just comment the last few lines of `execute_retraining.sh`. 
 
 ## Running the tests
 
