@@ -1032,16 +1032,3 @@ if __name__ == '__main__':
 
     log.write('Model trained.')
     log.close()
-
-
-
-
-
-
-
-
-
-
-
-
-

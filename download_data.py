@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, stat
+import os
 import urllib.request
 import zipfile
 import shutil
@@ -56,6 +56,9 @@ if __name__=='__main__':
     from tests import TEST_FRS_columns, TEST_NEI_columns
 
     log = open('logfile.txt','a')
+
+    # Create data directory
+    make_directory(data_path)
 
     # Download ICIS-Air data
     icis_path = os.path.join(data_path, 'ICIS-Air')

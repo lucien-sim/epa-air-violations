@@ -5,7 +5,6 @@ import numpy as np
 import os
 import datetime
 import matplotlib.pyplot as plt
-import datetime
 
 def load_raw_inspections(file_path,start_date=pd.Timestamp(year=2013,month=1,day=1),
                      end_date=pd.Timestamp(year=2018,month=12,day=31)):

@@ -1,6 +1,7 @@
-/data/*
+data/*
 /.ipynb_checkpoints
 /old_stuff
 /presentations
 /web-app
 /__pycache__
+/.vscode
