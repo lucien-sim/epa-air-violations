@@ -5,18 +5,18 @@ The model takes in information about a given inspection under the Clean Air Act 
 ## Getting Started
 
 ### What's in this repository?
-* `execute_retraining.sh`: Script that instructs the model retraining and pushes the result to Heroku. 
-* `prepare_to_retrain.py`: Script that prepares the directory for model retraining (mostly prepares the log file).
-* `download_data.ipynb`: Notebook that downloads all data for the model. 
-* `download_data.py`: Script version of `download_data.ipynb`. 
-* `link_inspections_violations.ipynb`: Notebook that links inspections and violations. 
-* `link_inspections_violations.py`: Script version of `link_inspections_violations.ipynb`. 
-* `prepare_nei_data.ipynb`: Notebook that prepares National Emissions Inventories data for use in the model. 
-* `prepare_nei_data.py`: Notebook version of `prepare_nei_data.ipynb`. 
-* `build_evaluate_model.ipynb`: Notebook that creates the training/test datasets, and then trains and evaluates the model. 
-* `build_evaluate_model.py`: Script version of `build_evaluate_model.ipynb`. 
-* `tests.py`: Script that contains some unit tests. 
-* `external_variables.py`: Contains a few variables that the system needs in order to run. 
+* `./scripts/execute_retraining.sh`: Script that instructs the model retraining and pushes the result to Heroku. 
+* `./scripts/prepare_to_retrain.py`: Script that prepares the directory for model retraining (mostly prepares the log file).
+* `./notebooks/download_data.ipynb`: Notebook that downloads all data for the model. 
+* `./scripts/download_data.py`: Script version of `download_data.ipynb`. 
+* `./notebooks/link_inspections_violations.ipynb`: Notebook that links inspections and violations. 
+* `./scripts/link_inspections_violations.py`: Script version of `link_inspections_violations.ipynb`. 
+* `./notebooks/prepare_nei_data.ipynb`: Notebook that prepares National Emissions Inventories data for use in the model. 
+* `./scripts/prepare_nei_data.py`: Notebook version of `prepare_nei_data.ipynb`. 
+* `./notebooks/build_evaluate_model.ipynb`: Notebook that creates the training/test datasets, and then trains and evaluates the model. 
+* `./scripts/build_evaluate_model.py`: Script version of `build_evaluate_model.ipynb`. 
+* `./scripts/tests.py`: Script that contains some unit tests. 
+* `./scripts/external_variables.py`: Contains a few variables that the system needs in order to run. Duplicate can be found at `./notebooks/external_variables.py`. 
 
 ### Prerequisites
 * Python 3

@@ -1,5 +1,5 @@
-data_path = './data'
-app_path = './web-app'
+data_path = '../data'
+app_path = '../web-app'
 
 
 naics_dict = {

@@ -1,7 +1,10 @@
 data/*
-/.ipynb_checkpoints
-/old_stuff
-/presentations
-/web-app
-/__pycache__
-/.vscode
+__pycache__/
+models/
+.vscode/*
+.ipynb_checkpoints/*
+scripts/.ipynb_checkpoints/*
+notebooks/.ipynb_checkpoints/*
+old_stuff/
+presentations/
+web-app/

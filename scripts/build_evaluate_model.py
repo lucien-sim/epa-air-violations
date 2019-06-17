@@ -852,7 +852,7 @@ if __name__ == '__main__':
 
     # Save model and feature importances
     from joblib import dump
-    dump(RFclf_maj, os.path.join('.', 'models', 'model_major_facilities.joblib'))
+    dump(RFclf_maj, os.path.join('..', 'models', 'model_major_facilities.joblib'))
     filename = save_feature_importances(X_train2, RFclf_maj)
 
 
@@ -903,7 +903,7 @@ if __name__ == '__main__':
     RFclf_min.fit(X_reb_f, y_reb_f)
 
     # Save the model, feature importances
-    dump(RFclf_min,os.path.join('.','models','model_minor_facilities.joblib'))
+    dump(RFclf_min,os.path.join('..','models','model_minor_facilities.joblib'))
     filename = save_feature_importances(X_train2, RFclf_min)
 
 
