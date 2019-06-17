@@ -64,7 +64,7 @@ The tests run automatically during the data download/model retraining process. I
 
 ## Authors
 
-* **Lucien Simpfendoerfer** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Lucien Simpfendoerfer**
 
 ## License
 
